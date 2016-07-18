@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>途牛新品导航</title>
+    <link rel="stylesheet" href="css/img2.css">
+
+</head>
+<body>
+    <div id="box">
+        <div class="con">
+            <ul>
+                <li><img src="imgs/img2/1.jpg" alt=""></li>
+                <li><img src="imgs/img2/2.jpg" alt=""></li>
+                <li><img src="imgs/img2/3.jpg" alt=""></li>
+                <li><img src="imgs/img2/4.jpg" alt=""></li>
+                <li><img src="imgs/img2/5.jpg" alt=""></li>
+                <li><img src="imgs/img2/6.jpg" alt=""></li>
+            </ul>
+        </div>
+
+        <div class="prev"></div>
+        <div class="next"></div>
+        <div class="nav">
+            <ul>
+                <li class="bg">春天赏花去</li>
+                <li>疯狂特卖</li>
+                <li>海岛错峰游</li>
+                <li>三亚超值爆款</li>
+                <li>春游要出境</li>
+                <li>日韩赏樱</li>
+            </ul>
+            <script src="js/jquery.js"></script>
+            <script type="text/javascript">
+                var i=0;//存放li下标
+                var time=0;
+                $("#box").hover(function(){
+                    $(".prev").fadeIn(300);
+                },function(){
+                    $(".prev").fadeOut(300);
+                });
+                $("#box").hover(function(){
+                    $(".next").fadeIn(300);
+                },function(){
+                    $(".next").fadeOut(300);
+                });
+                $(".nav ul li").hover(function () {
+                    i=$(this).index();
+                    $(".con ul li").eq(i).slideDown(500).siblings().slideUp(500);
+                    $(this).addClass("bg").siblings().removeClass("bg");
+                    clearInterval(time);
+                },function () {
+                    time=setInterval("junmper()",3000);
+                });
+                $(".prev").click(function(){
+                    i--;
+                    if(i<0)
+                        i=5;
+                    $(".con ul li").eq(i).slideDown(500).siblings().slideUp(500);
+                    $(".nav ul li").eq(i).addClass("bg").siblings().removeClass("bg");
+                });
+                $(".next").click(function(){
+                    i++;
+                    if(i>5)
+                        i=0;
+                    $(".con ul li").eq(i).slideDown(500).siblings().slideUp(100);
+                    $(".nav ul li").eq(i).addClass("bg").siblings().removeClass("bg");
+                });
+                $(".prev").hover(function(){
+                    clearInterval(time);
+                },function(){
+                    time=setInterval("junmper()",3000);
+                });
+                $(".next").hover(function(){
+                    clearInterval(time);
+                },function(){
+                    time=setInterval("junmper()",3000);
+                });
+                function junmper(){
+                    i++;
+                    if(i>5)
+                        i=0;
+                    $(".con ul li").eq(i).slideDown(500).siblings().slideUp(500);
+                    $(".nav ul li").eq(i).addClass("bg").siblings().removeClass("bg");
+                }
+                time=setInterval("junmper()",3000);
+            </script>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>
